@@ -16,8 +16,8 @@ export class HomeComponent implements OnInit {
     this.moviesService
       .getMovies()
       .subscribe((response: any) => {
-        this.movies = response
-        console.log(response.results);
+        this.movies = response.results
+        console.log(this.movies);
     });
   }
 }

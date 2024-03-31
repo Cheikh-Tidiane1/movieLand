@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { SliderComponent } from '../../components/slider/slider.component';
+import { JsonPipe } from '@angular/common';
+import { MoviesServiceService } from '../../services/movies-service.service';
 @Component({
-  selector: 'app-home',
+  selector: 'home',
   standalone: true,
-  imports: [],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  imports: [SliderComponent, JsonPipe],
 })
-export class HomeComponent {
-
+export class HomeComponent implements OnInit {
+  movies: any = [];
+  constructor(private moviesService: MoviesServiceService) {}
+  ngOnInit(): void {
+    this.moviesService
+      .getMovies()
+      .subscribe((response: any) => {
+        this.movies = response
+        console.log(response.results);
+    });
+  }
 }

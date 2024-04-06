@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from '../../models/movies';
-import { DatePipe } from '@angular/common';
+import { DatePipe, CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 @Component({
   selector: 'slider',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe,CommonModule],
   templateUrl: './slider.component.html',
   styleUrl: './slider.component.scss',
   animations: [

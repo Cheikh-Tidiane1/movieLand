@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { SliderComponent } from '../../components/slider/slider.component';
 import { JsonPipe } from '@angular/common';
 import { MoviesServiceService } from '../../services/movies-service.service';
-import { ItemsBannerComponent } from "../../components/items-banner/items-banner.component";
+import { ItemsBannerComponent } from '../../components/items-banner/items-banner.component';
 import { Movie } from '../../models/movies';
 @Component({
-    selector: 'home',
-    standalone: true,
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.scss',
-    imports: [SliderComponent, JsonPipe, ItemsBannerComponent]
+  selector: 'home',
+  standalone: true,
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
+  imports: [SliderComponent, JsonPipe, ItemsBannerComponent],
 })
 export class HomeComponent implements OnInit {
   popularMovies: Movie[] = [];
@@ -17,20 +17,14 @@ export class HomeComponent implements OnInit {
   topRatedMovies: Movie[] = [];
   constructor(private moviesService: MoviesServiceService) {}
   ngOnInit(): void {
-    this.moviesService
-      .getMovies('popular')
-      .subscribe((response) => {
-        this.popularMovies = response.results
+    this.moviesService.getMovies('popular').subscribe((movies) => {
+      this.popularMovies = movies;
     });
-    this.moviesService
-      .getMovies('top_rated')
-      .subscribe((response) => {
-        this.topRatedMovies = response.results
+    this.moviesService.getMovies('top_rated').subscribe((movies) => {
+      this.topRatedMovies = movies;
     });
-    this.moviesService
-      .getMovies('upcoming')
-      .subscribe((response) => {
-        this.upcomingMovies = response.results
+    this.moviesService.getMovies('upcoming').subscribe((movies) => {
+      this.upcomingMovies = movies;
     });
   }
 }

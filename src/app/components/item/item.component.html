@@ -6,10 +6,9 @@
   </div>
   <div class="item-image">
     <img
-      [src]="'https://image.tmdb.org/t/p/original/' + itemData.backdrop_path"
+      [src]="imagesSizes.medium + itemData.backdrop_path"
     />
   </div>
   <div class="item-title">{{itemData.title}}</div>
 </a>
-
 }

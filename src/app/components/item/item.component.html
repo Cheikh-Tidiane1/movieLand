@@ -1,13 +1,15 @@
+@if(itemData){
 <a class="item">
   <div class="item-rating">
     <i class="app-icon">star</i>
-    <span>7</span
-    >/10
+    <span>{{itemData.vote_average | number:'1.1-1'}}</span>/10
   </div>
   <div class="item-image">
     <img
-      src="https://image.tmdb.org/t/p/original/1XDDXPXGiI8id7MrUxK36ke7gkX.jpg"
+      [src]="'https://image.tmdb.org/t/p/original/' + itemData.backdrop_path"
     />
   </div>
-  <div class="item-title"></div>
+  <div class="item-title">{{itemData.title}}</div>
 </a>
+
+}

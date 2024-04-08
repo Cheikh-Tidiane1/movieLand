@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ItemComponent } from '../item/item.component';
+import { Movie } from '../../models/movies';
 
 @Component({
   selector: 'items-banner',
@@ -8,7 +9,7 @@ import { ItemComponent } from '../item/item.component';
   styleUrl: './items-banner.component.scss',
   imports: [ItemComponent],
 })
-export class ItemsBannerComponent implements OnInit {
-  constructor() {}
-  ngOnInit(): void {}
+export class ItemsBannerComponent {
+  @Input() items: Movie[] = [];
+  @Input() title: string = '';
 }

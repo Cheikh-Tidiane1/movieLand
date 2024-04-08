@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MovieDto } from '../models/movies';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,7 +10,7 @@ export class MoviesServiceService {
   constructor(private http: HttpClient) {}
 
   getMovies(type: string = "upcoming") {
-    return this.http.get(
+    return this.http.get<MovieDto>(
       `${this.baseUrl}/movie/${type}?api_key=${this.apiKey}`
     );
   }

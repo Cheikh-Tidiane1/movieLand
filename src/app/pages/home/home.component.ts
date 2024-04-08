@@ -3,6 +3,7 @@ import { SliderComponent } from '../../components/slider/slider.component';
 import { JsonPipe } from '@angular/common';
 import { MoviesServiceService } from '../../services/movies-service.service';
 import { ItemsBannerComponent } from "../../components/items-banner/items-banner.component";
+import { Movie } from '../../models/movies';
 @Component({
     selector: 'home',
     standalone: true,
@@ -11,14 +12,25 @@ import { ItemsBannerComponent } from "../../components/items-banner/items-banner
     imports: [SliderComponent, JsonPipe, ItemsBannerComponent]
 })
 export class HomeComponent implements OnInit {
-  movies: any = [];
+  popularMovies: Movie[] = [];
+  upcomingMovies: Movie[] = [];
+  topRatedMovies: Movie[] = [];
   constructor(private moviesService: MoviesServiceService) {}
   ngOnInit(): void {
     this.moviesService
-      .getMovies()
+      .getMovies('popular')
       .subscribe((response: any) => {
-        this.movies = response.results
-        console.log(this.movies);
+        this.popularMovies = response.results
+    });
+    this.moviesService
+      .getMovies('top_rated')
+      .subscribe((response: any) => {
+        this.topRatedMovies = response.results
+    });
+    this.moviesService
+      .getMovies('upcoming')
+      .subscribe((response: any) => {
+        this.upcomingMovies = response.results
     });
   }
 }

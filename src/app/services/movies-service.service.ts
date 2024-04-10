@@ -10,7 +10,10 @@ export class MoviesServiceService {
   apiKey: string = '1a484aa47d89f6331c855cf5d0229ca5';
   constructor(private http: HttpClient) {}
 
-  getMovies(type: string = 'upcoming',count: number = 12): Observable<Movie[]> {
+  getMovies(
+    type: string = 'upcoming',
+    count: number = 12
+  ): Observable<Movie[]> {
     return this.http
       .get<MovieDto>(
         `${this.baseUrl}/movie/${type}?api_key=${this.apiKey}&language=fr-Fr`
@@ -20,6 +23,11 @@ export class MoviesServiceService {
           return of(res.results.slice(0, count));
         })
       );
+  }
+  getMovie(id: string) {
+    return this.http.get<Movie>(
+      `${this.baseUrl}/movie/${id}?api_key=${this.apiKey}&language=fr-Fr`
+    );
   }
   searchMovies(page: number) {
     return this.http

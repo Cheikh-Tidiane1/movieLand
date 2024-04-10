@@ -1,5 +1,5 @@
 @if(itemData){
-<a class="item">
+<a  routerLink="/movie/{{itemData.id}}" class="item">
   <div class="item-rating">
     <i class="app-icon">star</i>
     <span>{{itemData.vote_average | number:'1.1-1'}}</span>/10

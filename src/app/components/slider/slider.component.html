@@ -14,7 +14,9 @@
         <div class="info">
           <span class="rating">
             <span class="app-icon">star</span>
-            <span class="rating-value">{{ item.vote_average | number:'1.1-1' }}</span>
+            <span class="rating-value">{{
+              item.vote_average | number : "1.1-1"
+            }}</span>
             <span>/10</span>
           </span>
           <span>{{ item.vote_count }}</span>
@@ -22,7 +24,10 @@
         </div>
       </div>
       <div class="desc mt-6">
+        @if(item.overview.length > 400){
+        {{ item.overview.slice(0, 391) }}....}@else{
         {{ item.overview }}
+        }
       </div>
     </div>
   </div>

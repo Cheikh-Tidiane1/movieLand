@@ -26,9 +26,7 @@
         </div>
         <div class="stat">
           <div class="label">Revenue :</div>
-          <div class="value">
-            {{ movie.revenue }} €
-          </div>
+          <div class="value">{{ movie.revenue }} €</div>
         </div>
         <div class="stat">
           <div class="label">Durée :</div>
@@ -53,8 +51,19 @@
       </div>
     </div>
   </p-tabPanel>
-  <p-tabPanel header="Videos"> 
-    <pre>{{movieVideos | json}}</pre> 
+  <p-tabPanel header="Videos">
+    <div class="grid">
+      <ng-container>
+        @for(movieVideo of movieVideos; track movieVideo){
+        <div class="col-12 md:col-4 lg:col-4">
+          <video-embed
+            [key]="movieVideo.key"
+            [site]="movieVideo.key"
+          ></video-embed>
+        </div>
+        }
+      </ng-container>
+    </div>
   </p-tabPanel>
   <p-tabPanel header="Photos"> Content 3 </p-tabPanel>
 </p-tabView>

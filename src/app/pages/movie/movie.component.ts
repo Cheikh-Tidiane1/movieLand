@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie, MovieVideo } from '../../models/movies';
+import { Movie, MovieImages, MovieVideo } from '../../models/movies';
 import { MoviesServiceService } from '../../services/movies-service.service';
 import {
   JsonPipe,
@@ -13,30 +13,32 @@ import { SliderComponent } from '../../components/slider/slider.component';
 import { TabViewModule } from 'primeng/tabview';
 import { IMAGES_SIZES } from '../../constants/images-sizes';
 import { VideoEmbedComponent } from '../../components/video-embed/video-embed.component';
-import { DurationPipe } from "../../pipes/duration.pipe";
+import { DurationPipe } from '../../pipes/duration.pipe';
+import { ImageModule } from 'primeng/image';
 
 @Component({
-    selector: 'app-movie',
-    standalone: true,
-    templateUrl: './movie.component.html',
-    styleUrl: './movie.component.scss',
-    imports: [
-        DatePipe,
-        SliderComponent,
-        TabViewModule,
-        UpperCasePipe,
-        CurrencyPipe,
-        JsonPipe,
-        VideoEmbedComponent,
-        CommonModule,
-        DurationPipe
-    ]
+  selector: 'app-movie',
+  standalone: true,
+  templateUrl: './movie.component.html',
+  styleUrl: './movie.component.scss',
+  imports: [
+    DatePipe,
+    SliderComponent,
+    TabViewModule,
+    UpperCasePipe,
+    CurrencyPipe,
+    JsonPipe,
+    VideoEmbedComponent,
+    CommonModule,
+    DurationPipe,
+    ImageModule,
+  ],
 })
 export class MovieComponent implements OnInit {
   movie: Movie;
   imazeSizes = IMAGES_SIZES;
   movieVideos: MovieVideo[] = [];
-
+  moviesImages: MovieImages;
   constructor(
     private route: ActivatedRoute,
     private movieService: MoviesServiceService
@@ -58,6 +60,7 @@ export class MovieComponent implements OnInit {
   getMovieVideos(id: string) {
     this.movieService.getMovieVideos(id).subscribe((movieVideosData) => {
       this.movieVideos = movieVideosData;
+      console.log(this.movieVideos);
     });
   }
 }

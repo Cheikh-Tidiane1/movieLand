@@ -31,11 +31,11 @@
         <div class="stat">
           <div class="label">Durée :</div>
           <div class="value">
-            {{ movie.runtime | duration}} 
+            {{ movie.runtime | duration }}
           </div>
         </div>
         <div class="stat">
-          <div class="label">Statu :</div>
+          <div class="label">Statut :</div>
           <div class="value">
             {{ movie.status }}
           </div>
@@ -67,5 +67,20 @@
       </ng-container>
     </div>
   </p-tabPanel>
-  <p-tabPanel header="Photos"> Content 3 </p-tabPanel>
+  <p-tabPanel header="Photos">
+    <div class="grid">
+      <ng-container>
+        @for(movieImage of moviesImages.backdrops; track movieImage){
+        <div class="col-12 md:col-4 lg:col-4">
+          <p-image
+            src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg"
+            alt="Image"
+            width="250"
+            [preview]="true"
+          ></p-image>
+        </div>
+        }
+      </ng-container>
+    </div>
+  </p-tabPanel>
 </p-tabView>

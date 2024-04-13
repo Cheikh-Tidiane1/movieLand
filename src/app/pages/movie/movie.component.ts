@@ -11,22 +11,22 @@ import {
 import { SliderComponent } from '../../components/slider/slider.component';
 import { TabViewModule } from 'primeng/tabview';
 import { IMAGES_SIZES } from '../../constants/images-sizes';
-import { VideoEmbedComponent } from "../../components/video-embed/video-embed.component";
+import { VideoEmbedComponent } from '../../components/video-embed/video-embed.component';
 
 @Component({
-    selector: 'app-movie',
-    standalone: true,
-    templateUrl: './movie.component.html',
-    styleUrl: './movie.component.scss',
-    imports: [
-        DatePipe,
-        SliderComponent,
-        TabViewModule,
-        UpperCasePipe,
-        CurrencyPipe,
-        JsonPipe,
-        VideoEmbedComponent
-    ]
+  selector: 'app-movie',
+  standalone: true,
+  templateUrl: './movie.component.html',
+  styleUrl: './movie.component.scss',
+  imports: [
+    DatePipe,
+    SliderComponent,
+    TabViewModule,
+    UpperCasePipe,
+    CurrencyPipe,
+    JsonPipe,
+    VideoEmbedComponent,
+  ],
 })
 export class MovieComponent implements OnInit {
   movie: Movie;
@@ -43,7 +43,6 @@ export class MovieComponent implements OnInit {
       this.getMovie(id);
       this.getMovieVideos(id);
     });
-    
   }
 
   getMovie(id: string) {

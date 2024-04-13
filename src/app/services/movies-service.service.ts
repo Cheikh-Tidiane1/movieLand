@@ -40,9 +40,9 @@ export class MoviesServiceService {
   }
 
   getMovieImages(id: string): Observable<MovieImages> {
-    return this.http.get<MovieImages>(`${this.baseUrl}/movie/${id}/images?api_key=${this.apiKey}`);
+    return this.http.get<MovieImages>(`${this.baseUrl}/movie/${id}/images?api_key=${this.apiKey}`)
   }
-  
+
   searchMovies(page: number): Observable<Movie[]> {
     return this.http
       .get<MovieDto>(

@@ -73,9 +73,9 @@
         @for(movieImage of moviesImages.backdrops; track movieImage){
         <div class="col-12 md:col-4 lg:col-4">
           <p-image
-            src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg"
+            [src]="imazeSizes.medium + movieImage.file_path"
             alt="Image"
-            width="250"
+            width="100%"
             [preview]="true"
           ></p-image>
         </div>

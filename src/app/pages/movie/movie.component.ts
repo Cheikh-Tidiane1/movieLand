@@ -48,6 +48,7 @@ export class MovieComponent implements OnInit {
     this.route.params.subscribe(({ id }) => {
       this.getMovie(id);
       this.getMovieVideos(id);
+      this.getMovieImages(id);
     });
   }
 
@@ -62,5 +63,11 @@ export class MovieComponent implements OnInit {
       this.movieVideos = movieVideosData;
       console.log(this.movieVideos);
     });
+  }
+
+  getMovieImages(id: string){
+    this.movieService.getMovieImages(id).subscribe((movieImagesData) => {
+      this.moviesImages = movieImagesData;
+    })
   }
 }

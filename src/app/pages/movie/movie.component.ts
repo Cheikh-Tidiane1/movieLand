@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie, MovieImages, MovieVideo } from '../../models/movies';
+import { Movie, MovieCredits, MovieImages, MovieVideo } from '../../models/movies';
 import { MoviesServiceService } from '../../services/movies-service.service';
 import {
   JsonPipe,
@@ -15,6 +15,7 @@ import { IMAGES_SIZES } from '../../constants/images-sizes';
 import { VideoEmbedComponent } from '../../components/video-embed/video-embed.component';
 import { DurationPipe } from '../../pipes/duration.pipe';
 import { ImageModule } from 'primeng/image';
+import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-movie',
@@ -32,13 +33,16 @@ import { ImageModule } from 'primeng/image';
     CommonModule,
     DurationPipe,
     ImageModule,
+    CarouselModule
   ],
 })
+
 export class MovieComponent implements OnInit {
   movie: Movie;
   imazeSizes = IMAGES_SIZES;
   movieVideos: MovieVideo[] = [];
   moviesImages: MovieImages;
+  movieCredits: MovieCredits;
   constructor(
     private route: ActivatedRoute,
     private movieService: MoviesServiceService
@@ -49,6 +53,7 @@ export class MovieComponent implements OnInit {
       this.getMovie(id);
       this.getMovieVideos(id);
       this.getMovieImages(id);
+      this.getMovieCredits(id);
     });
   }
 
@@ -69,5 +74,11 @@ export class MovieComponent implements OnInit {
     this.movieService.getMovieImages(id).subscribe((movieImagesData) => {
       this.moviesImages = movieImagesData;
     })
+  }
+
+  getMovieCredits(id: string) {
+    this.movieService.getMovieCredits(id).subscribe((movieCreditsData) => {
+      this.movieCredits = movieCreditsData;
+    });
   }
 }

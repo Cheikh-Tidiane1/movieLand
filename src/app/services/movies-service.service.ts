@@ -43,7 +43,7 @@ export class MoviesServiceService {
     return this.http.get<MovieImages>(`${this.baseUrl}/movie/${id}/images?api_key=${this.apiKey}`)
   }
 
-  getMovieCredits(id: string) {
+  getMovieCredits(id: string): Observable<MovieCredits> {
     return this.http.get<MovieCredits>(
       `${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}`
     );

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie, MovieCredits, MovieImages, MovieVideo } from '../../models/movies';
 import { MoviesServiceService } from '../../services/movies-service.service';
@@ -37,7 +37,7 @@ import { CarouselModule } from 'primeng/carousel';
   ],
 })
 
-export class MovieComponent implements OnInit {
+export class MovieComponent implements OnInit, OnDestroy {
   movie: Movie;
   imazeSizes = IMAGES_SIZES;
   movieVideos: MovieVideo[] = [];
@@ -47,6 +47,10 @@ export class MovieComponent implements OnInit {
     private route: ActivatedRoute,
     private movieService: MoviesServiceService
   ) {}
+
+  ngOnDestroy(): void {
+    console.log("component destroyed");
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(({ id }) => {

@@ -9,7 +9,7 @@ import {
   MovieVideoDto,
 } from '../models/movies';
 import { Observable, of, switchMap } from 'rxjs';
-import { GenresDto } from '../models/genres';
+import { Genre, GenresDto } from '../models/genres';
 @Injectable({
   providedIn: 'root',
 })
@@ -50,7 +50,7 @@ export class MoviesServiceService {
       );
   }
   
-  getMovieGenres() {
+  getMovieGenres(): Observable<Genre[]> {
     return this.http
       .get<GenresDto>(`${this.baseUrl}/genre/movie/list?api_key=${this.apiKey}`)
       .pipe(

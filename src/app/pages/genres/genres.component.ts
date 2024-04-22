@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesServiceService } from '../../services/movies-service.service';
 import { Genre } from '../../models/genres';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-genres',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './genres.component.html',
   styleUrl: './genres.component.scss',
 })

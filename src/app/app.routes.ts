@@ -7,6 +7,7 @@ import { GenresComponent } from './pages/genres/genres.component';
 export const routes: Routes = [
     {path: '' ,component: HomeComponent , title: "Home"},
     {path: 'movies' ,component: MoviesComponent , title: "Movies"},
+    {path: 'movies/genres/:genresId' ,component: MoviesComponent , title: "Movies Genres"},
     {path: 'movie/:id' ,component: MovieComponent , title: "Movie"},
     {path: 'genres' ,component: GenresComponent , title: "Genres"},
     {path: '**' ,redirectTo: ''},

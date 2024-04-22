@@ -14,6 +14,7 @@ import { take } from 'rxjs';
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
+  genresId: string;
   constructor(
     private movieService: MoviesServiceService,
     private router: ActivatedRoute
@@ -21,7 +22,8 @@ export class MoviesComponent implements OnInit {
   ngOnInit(): void {
     this.router.params.pipe(take(1)).subscribe(({ genresId }) => {
       if (genresId) {
-        this.getMoviesByGenres(genresId);
+        this.getMoviesByGenres(genresId, 1);
+        this.genresId = genresId;
       } else {
         this.getPageMovies(1);
       }
@@ -34,13 +36,18 @@ export class MoviesComponent implements OnInit {
       .subscribe((movies) => (this.movies = movies));
   }
 
-  getMoviesByGenres(genresId: string) {
+  getMoviesByGenres(genresId: string, page: number) {
     this.movieService
-      .getMoviesByGenre(genresId)
+      .getMoviesByGenre(genresId, page)
       .subscribe((movies) => (this.movies = movies));
   }
 
   paginate(event: any) {
-    this.getPageMovies(event.page + 1);
+    const pageNumber = event.page + 1;
+    if (this.genresId) {
+      this.getMoviesByGenres(this.genresId, pageNumber);
+    } else {
+      this.getPageMovies(event.page + 1);
+    }
   }
 }

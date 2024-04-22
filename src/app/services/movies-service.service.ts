@@ -60,10 +60,10 @@ export class MoviesServiceService {
       );
   }
 
-  getMoviesByGenre(genreId: string): Observable<Movie[]> {
+  getMoviesByGenre(genreId: string, pageNumber: number): Observable<Movie[]> {
     return this.http
       .get<MovieDto>(
-        `${this.baseUrl}/discover/movie?with_genres=${genreId}&api_key=${this.apiKey}`
+        `${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${pageNumber}&api_key=${this.apiKey}`
       )
       .pipe(
         switchMap((res) => {

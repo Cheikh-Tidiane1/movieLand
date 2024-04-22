@@ -49,13 +49,25 @@ export class MoviesServiceService {
         })
       );
   }
-  
+
   getMovieGenres(): Observable<Genre[]> {
     return this.http
       .get<GenresDto>(`${this.baseUrl}/genre/movie/list?api_key=${this.apiKey}`)
       .pipe(
         switchMap((res) => {
           return of(res.genres);
+        })
+      );
+  }
+
+  getMoviesByGenre(genreId: string, pageNumber: number): Observable<Movie[]> {
+    return this.http
+      .get<MovieDto>(
+        `${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${pageNumber}&api_key=${this.apiKey}`
+      )
+      .pipe(
+        switchMap((res) => {
+          return of(res.results);
         })
       );
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../../models/movies';
+import { InputTextModule } from 'primeng/inputtext';
 import { MoviesServiceService } from '../../services/movies-service.service';
 import { ItemComponent } from '../../components/item/item.component';
 import { PaginatorModule } from 'primeng/paginator';
@@ -10,7 +11,7 @@ import { take } from 'rxjs';
   standalone: true,
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss',
-  imports: [ItemComponent, PaginatorModule],
+  imports: [ItemComponent, PaginatorModule,InputTextModule],
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
@@ -47,7 +48,7 @@ export class MoviesComponent implements OnInit {
     if (this.genresId) {
       this.getMoviesByGenres(this.genresId, pageNumber);
     } else {
-      this.getPageMovies(event.page + 1);
+      this.getPageMovies(pageNumber);
     }
   }
 }

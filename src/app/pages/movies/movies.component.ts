@@ -16,11 +16,14 @@ import { take } from 'rxjs';
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   genresId: string;
+  searValue: string;
   constructor(
     private movieService: MoviesServiceService,
     private router: ActivatedRoute
   ) {}
   ngOnInit(): void {
+
+    this.searValue = "yoo"
     this.router.params.pipe(take(1)).subscribe(({ genresId }) => {
       if (genresId) {
         this.getMoviesByGenres(genresId, 1);
@@ -51,4 +54,10 @@ export class MoviesComponent implements OnInit {
       this.getPageMovies(pageNumber);
     }
   }
+
+  searchChanged(){
+    console.log(this.searValue);
+  }
+
+
 }

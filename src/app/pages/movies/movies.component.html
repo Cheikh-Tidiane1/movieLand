@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="grid">
-    <div class="col-12">
+  <div class="grid searchBar">
+    <div class="col-6">
       <div class="p-fluid">
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
-          <input type="text" pInputText />
+          <input type="text" placeholder="Recherche" pInputText [(ngModel)]="searValue" (keyup)="searchChanged()"/>
         </span>
       </div>
     </div>

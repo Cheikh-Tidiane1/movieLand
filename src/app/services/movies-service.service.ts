@@ -84,14 +84,15 @@ export class MoviesServiceService {
     );
   }
 
-  searchMovies(page: number): Observable<Movie[]> {
+  searchMovies(page: number, searchValue?: string): Observable<Movie[]> {
+    const uri = searchValue ? '/search/movie' : '/movie/popular'
     return this.http
       .get<MovieDto>(
-        `${this.baseUrl}/movie/popular?page=${page}&api_key=${this.apiKey}&language=fr-Fr`
+        `${this.baseUrl}${uri}?page=${page}&query=${searchValue}&api_key=${this.apiKey}&language=fr-Fr`
       )
       .pipe(
         switchMap((res) => {
-          return of(res.results);
+          return of(res.results); 
         })
       );
   }

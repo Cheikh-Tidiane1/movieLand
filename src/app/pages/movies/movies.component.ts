@@ -22,8 +22,6 @@ export class MoviesComponent implements OnInit {
     private router: ActivatedRoute
   ) {}
   ngOnInit(): void {
-
-    this.searValue = "yoo"
     this.router.params.pipe(take(1)).subscribe(({ genresId }) => {
       if (genresId) {
         this.getMoviesByGenres(genresId, 1);
@@ -34,9 +32,9 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  getPageMovies(page: number) {
+  getPageMovies(page: number, searchKeyWord?: string) {
     this.movieService
-      .searchMovies(page)
+      .searchMovies(page,searchKeyWord)
       .subscribe((movies) => (this.movies = movies));
   }
 
@@ -56,7 +54,7 @@ export class MoviesComponent implements OnInit {
   }
 
   searchChanged(){
-    console.log(this.searValue);
+    this.getPageMovies(1,this.searValue)
   }
 
 

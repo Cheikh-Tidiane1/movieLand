@@ -99,7 +99,7 @@ export class MoviesServiceService {
   }
 
   getTvs(type: string = 'latest', count: number = 12): Observable<Tv[]>{
-    return this.http.get<TvDto>(`${this.baseUrl}/tv/${type}?api_key=${this.apiKey}`).pipe(
+    return this.http.get<TvDto>(`${this.baseUrl}/tv/${type}?api_key=${this.apiKey}&language=fr-Fr`).pipe(
       switchMap((res) => {
         return of(res.results.slice(0, count));
       })

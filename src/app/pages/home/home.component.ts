@@ -4,6 +4,7 @@ import { JsonPipe } from '@angular/common';
 import { MoviesServiceService } from '../../services/movies-service.service';
 import { ItemsBannerComponent } from '../../components/items-banner/items-banner.component';
 import { Movie } from '../../models/movies';
+import { Tv } from '../../models/tv';
 @Component({
   selector: 'home',
   standalone: true,
@@ -15,6 +16,8 @@ export class HomeComponent implements OnInit {
   popularMovies: Movie[] = [];
   upcomingMovies: Movie[] = [];
   topRatedMovies: Movie[] = [];
+  popularTvShows: Tv[] = [];
+
   constructor(private moviesService: MoviesServiceService) {}
   ngOnInit(): void {
     this.moviesService.getMovies('popular').subscribe((movies) => {
@@ -25,6 +28,10 @@ export class HomeComponent implements OnInit {
     });
     this.moviesService.getMovies('upcoming').subscribe((movies) => {
       this.upcomingMovies = movies;
+    });
+    this.moviesService.getTvs('popular').subscribe((tvShows) => {
+      this.popularTvShows = tvShows;
+      console.log(this.popularTvShows);
     });
   }
 }

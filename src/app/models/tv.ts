@@ -1,8 +1,6 @@
 import { Movie } from './movies';
 
-export interface Tv extends Movie {
-  name: string;
-}
+export interface Tv extends Movie {}
 
 export interface TvDto {
   page: number;
@@ -10,5 +8,3 @@ export interface TvDto {
   total_results: number;
   total_pages: number;
 }
-
-

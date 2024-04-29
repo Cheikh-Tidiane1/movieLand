@@ -9,6 +9,12 @@
       [src]="imagesSizes.medium + itemData.backdrop_path"
     />
   </div>
-  <div class="item-title">{{itemData.title}}</div>
+  <div class="item-title">
+    @if(itemData.title){
+      {{itemData.title}}
+    }@else {
+      {{itemData.name}}
+    }
+    </div>
 </a>
 }

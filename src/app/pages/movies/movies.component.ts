@@ -11,7 +11,7 @@ import { take } from 'rxjs';
   standalone: true,
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss',
-  imports: [ItemComponent, PaginatorModule,InputTextModule],
+  imports: [ItemComponent, PaginatorModule, InputTextModule],
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
@@ -34,7 +34,7 @@ export class MoviesComponent implements OnInit {
 
   getPageMovies(page: number, searchKeyWord?: string) {
     this.movieService
-      .searchMovies(page,searchKeyWord)
+      .searchMovies(page, searchKeyWord)
       .subscribe((movies) => (this.movies = movies));
   }
 
@@ -49,13 +49,15 @@ export class MoviesComponent implements OnInit {
     if (this.genresId) {
       this.getMoviesByGenres(this.genresId, pageNumber);
     } else {
-      this.getPageMovies(pageNumber);
+      if (this.searValue) {
+        this.getPageMovies(pageNumber, this.searValue);
+      } else {
+        this.getPageMovies(pageNumber);
+      }
     }
   }
 
-  searchChanged(){
-    this.getPageMovies(1,this.searValue)
+  searchChanged() {
+    this.getPageMovies(1, this.searValue);
   }
-
-
 }

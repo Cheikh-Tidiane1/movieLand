@@ -10,6 +10,7 @@ import {
 } from '../models/movies';
 import { Observable, of, switchMap } from 'rxjs';
 import { Genre, GenresDto } from '../models/genres';
+import { Tv, TvDto } from '../models/tv';
 @Injectable({
   providedIn: 'root',
 })
@@ -95,5 +96,13 @@ export class MoviesServiceService {
           return of(res.results); 
         })
       );
+  }
+
+  getTvs(type: string = 'latest', count: number = 12): Observable<Tv[]>{
+    return this.http.get<TvDto>(`${this.baseUrl}/tv/${type}?api_key=${this.apiKey}`).pipe(
+      switchMap((res) => {
+        return of(res.results.slice(0, count));
+      })
+    );
   }
 }

@@ -86,23 +86,39 @@ export class MoviesServiceService {
   }
 
   searchMovies(page: number, searchValue?: string): Observable<Movie[]> {
-    const uri = searchValue ? '/search/movie' : '/movie/popular'
+    const uri = searchValue ? '/search/movie' : '/movie/popular';
     return this.http
       .get<MovieDto>(
         `${this.baseUrl}${uri}?page=${page}&query=${searchValue}&api_key=${this.apiKey}&language=fr-Fr`
       )
       .pipe(
         switchMap((res) => {
-          return of(res.results); 
+          return of(res.results);
         })
       );
   }
 
-  getTvs(type: string = 'latest', count: number = 12): Observable<Tv[]>{
-    return this.http.get<TvDto>(`${this.baseUrl}/tv/${type}?api_key=${this.apiKey}&language=fr-Fr`).pipe(
-      switchMap((res) => {
-        return of(res.results.slice(0, count));
-      })
-    );
+  getTvs(type: string = 'latest', count: number = 12): Observable<Tv[]> {
+    return this.http
+      .get<TvDto>(
+        `${this.baseUrl}/tv/${type}?api_key=${this.apiKey}&language=fr-Fr`
+      )
+      .pipe(
+        switchMap((res) => {
+          return of(res.results.slice(0, count));
+        })
+      );
+  }
+
+  getMovieSimilar(id: string): Observable<Movie[]> {
+    return this.http
+      .get<MovieDto>(
+        `${this.baseUrl}/movie/${id}/similar?api_key=${this.apiKey}`
+      )
+      .pipe(
+        switchMap((res) => {
+          return of(res.results.slice(0, 12));
+        })
+      );
   }
 }
